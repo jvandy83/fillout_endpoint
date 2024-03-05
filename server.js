@@ -108,7 +108,7 @@ app.get("/:formId/filteredResponses", async (req, res) => {
 
     // Send the filtered responses back to the client
     // res.send("ok");
-    res.json(response.data);
+    res.json(results);
   } catch (error) {
     console.error("Error fetching filtered responses:", error.message);
     res.status(500).json({ error: "Internal server error" });
