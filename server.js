@@ -47,8 +47,6 @@ app.get("/:formId/filteredResponses", async (req, res) => {
     // Parse and validate filters from query parameters
     const filters = req.query.filters ? JSON.parse(req.query.filters) : [];
 
-    console.log("FILTERS: ", filters);
-
     // Fetch responses from Fillout.com's API
     const response = await axios.get(
       `https://api.fillout.com/v1/api/forms/${formId}/submissions`,
@@ -85,24 +83,18 @@ app.get("/:formId/filteredResponses", async (req, res) => {
 
           const isValid = satisfiesCondition(queryValue, value, queryCondition);
 
-          console.log("***IS_VALID***: ", isValid);
-
           if (id !== queryId || !isValid) {
             passesFilters = false;
           }
         }
 
         if (passesFilters) {
-          console.log("QUESTION: ", question);
-
           filteredResponse.push(question);
         } else {
           return;
         }
       });
     }
-
-    console.log("FILTERED RESPONSE: ", filteredResponse);
 
     const results = {
       responses: {
