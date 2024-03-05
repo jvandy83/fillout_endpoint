@@ -10,7 +10,7 @@ const pageCount = (responses) => {
   if (responses > 0 && responses <= 20) {
     return 1;
   } else {
-    return responses / 20;
+    return Math.ceil(responses / 20);
   }
 };
 
