@@ -6,7 +6,13 @@ const axios = require("axios");
 const app = express();
 const port = process.env.PORT || 3000;
 
-const pageCount = (responses) => responses / 20;
+const pageCount = (responses) => {
+  if (responses > 0 && responses <= 20) {
+    return 1;
+  } else {
+    return responses / 20;
+  }
+};
 
 const apiKey = process.env.API_KEY;
 
